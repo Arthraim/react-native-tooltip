@@ -17,6 +17,7 @@ A react-native component from displaying tooltip. Uses UIMenuController.
 
 - `actions`: Array of actions `[{text: 'Copy', onPress: () => Clipboard.set(this.someValue) }]`
 - `longPress`: Boolean indicating if the tooltip should be showing on longPress, false by default.
+- `arrowDirection`: String indicating the direction of the tooltip arrow. Possible values are: `up`, `down`, `left`, and `right`. Default is `down`.
 
 #### Props from TouchableHighlight.propTypes
 
@@ -60,6 +61,7 @@ var tooltip = React.createClass({
             ]}
             underlayColor='transparent'
             longPress={true}
+            arrowDirection='down'
             style={styles.textinput}
           >
             <Text>
@@ -103,6 +105,7 @@ AppRegistry.registerComponent('tooltip', () => tooltip);
 ### Note
 
 It is also possible to open the menu programmatically, by calling `this.refs.theToolTip.showMenu();` ( `theToolTip` being the reference of the component).
+To hide menu `this.refs.theToolTip.hideMenu();` (Though tooltip hides by itself, while using with drawer on specific gesture tooltip does not hide by default.)
 
 ## Here is how it looks:
 ![Demo gif](https://github.com/chirag04/react-native-tooltip/blob/master/screenshot.png)

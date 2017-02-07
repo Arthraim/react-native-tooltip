@@ -16,17 +16,28 @@ var propTypes = {
     text: React.PropTypes.string.isRequired,
     onPress: React.PropTypes.func,
   })),
+  arrowDirection: React.PropTypes.oneOf(['up', 'down', 'left', 'right']),
   longPress: React.PropTypes.bool,
   ...TouchableHighlight.propTypes,
 };
 
 var ViewClass = React.createClass({
-  showMenu: function() {
-    ToolTipMenu.show(findNodeHandle(this.refs.toolTipText), this.getOptionTexts());
+  getDefaultProps: function() {
+    return {
+      arrowDirection: 'down'
+    };
   },
 
   showMenuFromRect: function(x, y, w, h) {
     ToolTipMenu.showFromRect(findNodeHandle(this.refs.toolTipText), this.getOptionTexts(), [x, y, w, h]);
+  },
+
+  showMenu: function() {
+    ToolTipMenu.show(findNodeHandle(this.refs.toolTipText), this.getOptionTexts(), this.props.arrowDirection);
+  },
+
+  hideMenu: function() {
+    ToolTipMenu.hide();
   },
 
   getOptionTexts: function() {
